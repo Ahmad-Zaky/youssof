@@ -29,6 +29,7 @@ jobs:
           branch: main
       
       - name: Notify
+        if: ${{ bash -c 'if [[ $(cat count.txt) -gt 4 ]]; then echo 1; else echo 0; fi' }}
         run: |
           export COUNT=$(cat count.txt)
           export OWNER="Ahmad-Zaky"
