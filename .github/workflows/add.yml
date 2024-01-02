@@ -13,6 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Add Count
+        id: add_count
         run: |
           chmod +x scripts/add.sh
           bash scripts/add.sh ${{ github.event.inputs.count }}
@@ -20,6 +21,8 @@ jobs:
           git config --global user.name "Ahmad Zaky"
           git add count.txt
           git commit -m "Updated count.txt"
+          export COUNT=$(cat count.txt)
+          echo "count=$COUNT" >> $GITHUB_OUTPUT
         shell: bash
 
       - name: Push changes
@@ -29,9 +32,9 @@ jobs:
           branch: main
       
       - name: Notify
-        if: ${{ bash -c 'if [[ $(cat count.txt) -gt 4 ]]; then echo 1; else echo 0; fi' }}
+        if: ${{ steps.add_count.outputs.count > 4 }}
         run: |
-          export COUNT=$(cat count.txt)
+          export COUNT=${{ steps.add_count.outputs.count }}
           export OWNER="Ahmad-Zaky"
           export REPO="youssof"
           export WORKFLOW_ID="80860768"
