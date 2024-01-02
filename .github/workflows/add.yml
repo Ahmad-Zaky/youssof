@@ -39,7 +39,7 @@ jobs:
           export REPO="youssof"
           export WORKFLOW_ID="80860768"
           export MSG="Quran lesson reached $COUNT lessons"
-          export EMAIL="ahmed6mohamed6@gmail.com"
+          export EMAIL="hishamabdelhafez@gmail.com"
           curl --location 'https://api.github.com/repos/'"$OWNER"'/'"$REPO"'/actions/workflows/'"$WORKFLOW_ID"'/dispatches' \
           --header 'Accept: application/vnd.github+json' \
           --header 'X-GitHub-Api-Version: 2022-11-28' \
