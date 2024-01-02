@@ -32,7 +32,7 @@ jobs:
           branch: main
       
       - name: Notify
-        if: ${{ steps.add_count.outputs.count > 4 }}
+        if: ${{ steps.add_count.outputs.count >= 4 }}
         run: |
           export COUNT=${{ steps.add_count.outputs.count }}
           export OWNER="Ahmad-Zaky"
